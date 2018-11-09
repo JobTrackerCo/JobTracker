@@ -1,44 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Job Tracker App
+Job Tracker App is an application task manager that allows users to easily view, track, and manage job opportunities.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+* Login user account with linkedIn
+* Dashboard
+* Display list of current recommended jobs from LinkedIn
+* Add jobs to a customized "favorites" list
+* Customized list will display important information related to the job description
+* Allow users to store contact information for each company
+* Automatic reminders to help the user continue to apply for things.
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Get started
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-hi
-### `npm test`
+This application uses mongoDB as a database. Initialize mongoDB using 'mongod' in your terminal.
+Then, follow these steps in your terminal:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. 'npm install'
+2. 'npm run server'
+3. 'npm run client'
 
-### `npm run build`
+Testing is done using Jest, to use run 'npm test' in terminal.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Screenshot
+![Screenshot](./https://placeholdit.co//i/600x250?&text=Screenshot)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Technology
+* React
+* MongoDB
+* Nodemon
+* Passport
+* Universal-Cookie
+* LinkedIn API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Stretch Goals
+* Make application deployable on desktop using electron.
+* Store user data locally
+* Digital business card
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Authors
+* Tyler Sehr (ReverendEd)
+* Jakeh Clark (Maelstrm)
