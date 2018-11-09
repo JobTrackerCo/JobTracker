@@ -1,14 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema; // Similar to a Class
+//const Schema = mongoose.Schema; // Similar to a Class
 
 // Define our data structure
-const JobSchema = new Schema({
-    linkedIn: {type: String}, // reference number from LinkedIn api
-    position: {type: String}, // The title of the job
-    ugoRef: {type: Number} // user generated object that contains additional information
-});
+const JobSchema = require('../schemas/JobSchema.schema')
 
 // This is a Model. It allows us to interface with the database.
 const Job = mongoose.model('Jobs', JobSchema);
