@@ -3,14 +3,29 @@ const express = require( 'express' );
 const app = express();
 const bodyParser = require('body-parser');
 const jobsRouter = require('./routes/jobs.router.js');
+const authRouter = require('./routes/auth.router.js')
+const passport = require('./strategies/linked.strategy')
+const cors = require('cors');
+const sessionMiddleware = require('./modules/session-middleware');
 
 // makes the data available on req.body
 // bodyParser sets req.body = data;
+
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+app.use(cors());
+
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(sessionMiddleware);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // uses
 app.use( express.static( 'server/public' ) );
-app.use('/jobs', jobsRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/jobs', jobsRouter)
 
 // globals
 // if process.env.PORT is undefined, use 5000
