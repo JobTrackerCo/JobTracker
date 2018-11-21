@@ -1,10 +1,11 @@
 // requires
+require('dotenv').config();
 const express = require( 'express' );
 const app = express();
 const bodyParser = require('body-parser');
 const jobsRouter = require('./routes/jobs.router.js');
 const authRouter = require('./routes/auth.router.js')
-const passport = require('./strategies/linked.strategy')
+const passport = require('./strategies/linkedin.strategy')
 const cors = require('cors');
 const sessionMiddleware = require('./modules/session-middleware');
 

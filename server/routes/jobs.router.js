@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 //const Schema = mongoose.Schema; // Similar to a Class
 
 // Define our data structure
-const JobSchema = require('../schemas/JobSchema.schema')
+const JobSchema = require('../schemas/UserSchema.schema')
 
 // This is a Model. It allows us to interface with the database.
 const Job = mongoose.model('Jobs', JobSchema);
