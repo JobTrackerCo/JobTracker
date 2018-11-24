@@ -3,6 +3,7 @@ const passport = require('passport');
 
 const LINKEDIN_ID = process.env.LINKEDIN_ID
 const LINKEDIN_SECRET = process.env.LINKEDIN_SECRET
+const CALLBACK_URL = process.env.CALLBACK_URL
 
 const mongoose = require('mongoose');
 // Define our data structure
@@ -44,7 +45,7 @@ passport.deserializeUser(function(obj, cb) {
 passport.use(new LinkedInStrategy({
   clientID: LINKEDIN_ID,
   clientSecret: LINKEDIN_SECRET,
-  callbackURL: "http://localhost:5000/api/auth/linkedin/callback",
+  callbackURL: CALLBACK_URL,
   scope: ['r_emailaddress', 'r_basicprofile'],
   state: true
 }, function(accessToken, refreshToken, profile, done) {
