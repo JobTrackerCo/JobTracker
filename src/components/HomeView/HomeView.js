@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios'
 
 //import Nav from '../../components/Nav/Nav';
 //import { USER_ACTIONS } from '../../redux/actions/userActions';
@@ -9,8 +10,24 @@ const mapStateToProps = state => ({
 });
 
 class InfoPage extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            ENVIRONMENT: ''
+        }
+    }
+
+
+
+
   componentDidMount() {
-    //this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
+    axios.get('/api/env/get-env')
+    .then((response)=>{
+        this.setState({
+            ENVIRONMENT: response.data
+        })
+    })
   }
 
   componentDidUpdate() {
@@ -20,13 +37,30 @@ class InfoPage extends Component {
   }
 
   render() {
-    let content = null;
+    let content;
 
-    // if (this.props.user.userName) {
-    //   content = (
-        
-    //   );
-    // }
+    console.log(this.state.ENVIRONMENT);
+    
+
+
+    if (this.state.ENVIRONMENT === 'LOCAL') {
+      content =
+        (<div>
+          <a href="http://localhost:5000/api/auth/linkedin">click me</a>
+        </div>)
+    }
+    else if (this.state.ENVIRONMENT === 'HEROKU_TEST') {
+      content =
+        (<div>
+          <a href="http://localhost:5000/api/auth/linkedin">click me</a>
+        </div>)
+    }
+    else if (this.state.ENVIRONMENT === 'HEROKU') {
+      content =
+        (<div>
+          <a href="http://localhost:5000/api/auth/linkedin">click me</a>
+        </div>)
+    }
 
     return (
       <div>
@@ -34,7 +68,7 @@ class InfoPage extends Component {
           <p>
             Home Page
           </p>
-          <a href="http://localhost:5000/api/auth/linkedin">click me</a>
+          {content}
         </div>
       </div>
     );

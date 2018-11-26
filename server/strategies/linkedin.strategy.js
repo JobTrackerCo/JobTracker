@@ -5,11 +5,9 @@ const LINKEDIN_ID = process.env.LINKEDIN_ID
 const LINKEDIN_SECRET = process.env.LINKEDIN_SECRET
 const CALLBACK_URL = process.env.CALLBACK_URL
 
-const mongoose = require('mongoose');
 // Define our data structure
-const UserSchema = require('../schemas/UserSchema.schema')
+const User = require('../schemas/UserSchema.schema')
 // This is a Model. It allows us to interface with the database.
-const Job = mongoose.model('Users', UserSchema);
 
 const defaultUGO = {
   column1: {
@@ -55,21 +53,34 @@ passport.use(new LinkedInStrategy({
     // represent the logged-in user. In a typical application, you would want
     // to associate the LinkedIn account with a user record in your database,
     // and return that user instead.
-    const newUser = {
-      user: {
-        userType: 'user',
-        email: profile.emails[0].value,
-        name: profile.displayName,
-        photo: profile.photos[0].value,
-        location: profile._json.location.name,
-        industries: profile._json.industry,
-        ugo: JSON.stringify(defaultUGO), //JSON object
-      },
+    const user = {
+      userType: 'user',
+      email: profile.emails[0].value,
+      name: profile.displayName,
+      photo: profile.photos[0].value,
+      location: profile._json.location.name,
+      industries: profile._json.industry,
+      ugo: JSON.stringify(defaultUGO), //JSON object
       jobs: []
     }
-    console.log(newUser);
-    
-    return done(null, profile);
+    let newUser = new User(user)
+
+    var query = { userType: user.userType, email: user.email, name: user.name, location: user.location };
+
+    User.find(query)
+    .then((data)=>{
+      if (data.length === 0) {
+        newUser.save().then((data)=>{
+          return done(null, profile);
+        })
+      }
+      else{
+        return done(null, data[0])
+      }
+    })
+    .catch((error)=>{
+      console.log('there was an error', error);
+    })
   });
 }));
 

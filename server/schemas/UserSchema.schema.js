@@ -3,15 +3,13 @@ const Schema = mongoose.Schema; // Similar to a Class
 
 // Define our data structure
 const UserSchema = new Schema({
-    user: {
         userType: {type: String},
         email: {type: String},
         name: {type: String},
         photo: {type: String},
         location: {type: String},
         industries: [String],
-        ugo: {type: String} //this is a string with values separated by commas. 
-    },
+        ugo: {type: String}, //this is a string with values separated by commas. 
     jobs: [{
         referenceNumber: {type: String},
         position: {type: String},
@@ -24,4 +22,4 @@ const UserSchema = new Schema({
 
 
 
-module.exports = UserSchema;
+module.exports = mongoose.model('User', UserSchema);
